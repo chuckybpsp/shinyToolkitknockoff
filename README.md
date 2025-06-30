@@ -12,6 +12,7 @@ A desktop application for scheduled folder backups, inspired by the FOCUS Toolki
 
 ## Features
 
+### Core Features
 - **Dark Theme UI**: Modern dark interface similar to the original FOCUS Toolkit
 - **Scheduled Backups**: Set specific days of the week and times for automatic backups
 - **Manual Backups**: Instant backup with the "Backup Now" button
@@ -19,6 +20,15 @@ A desktop application for scheduled folder backups, inspired by the FOCUS Toolki
 - **Configuration Persistence**: All settings are saved and restored between sessions
 - **Background Operation**: Scheduler runs in background thread
 - **Safety Features**: Validation checks before performing backups
+
+### Premium Features (backup_toolkit_premium.py)
+- **✨ Smooth Animations**: Apple-like button hover effects and transitions
+- **🎯 Animated Progress Ring**: Beautiful circular progress indicator during backups
+- **💫 Status Animations**: Pulsing status indicators with color transitions
+- **🔔 Premium Notifications**: Elegant toast-style notifications that slide in
+- **🎨 Enhanced UI**: Card-based design with modern toggle switches
+- **⚡ Color Transitions**: Smooth color interpolation for all interactive elements
+- **🌟 Startup Animations**: Fade-in effects for a polished app launch experience
 
 ## Requirements
 
@@ -83,12 +93,45 @@ Settings are automatically saved to `backup_config.json` in the application dire
 ## File Structure
 
 ```
-backup_toolkit.py          # Main application
-run_backup_toolkit.py      # Launcher with dependency management  
+backup_toolkit_premium.py  # Premium version with smooth animations
+backup_toolkit.py          # Standard GUI version
+backup_toolkit_simple.py   # Simple GUI version (no external dependencies)
+backup_cli.py              # Command-line interface version
+run_backup_toolkit.py      # Smart launcher with auto-detection
+demo_animations.py         # Interactive demo of premium animations
 requirements.txt           # Python dependencies
 backup_config.json         # Configuration file (created automatically)
 README.md                  # This file
 ```
+
+## Try the Animations
+
+To see the premium animations in action, run the demo:
+
+```bash
+python3 demo_animations.py
+```
+
+This interactive demo showcases:
+- **Smooth button hover effects** with color transitions
+- **Animated progress rings** with easing functions
+- **Pulsing status indicators** with dynamic scaling
+- **Slide-in notifications** with smooth positioning
+
+## Version Comparison
+
+| Feature | CLI | Simple GUI | Standard GUI | Premium GUI |
+|---------|-----|------------|--------------|-------------|
+| Folder Selection | ✅ | ✅ | ✅ | ✅ |
+| Scheduling | ✅ | ✅ | ✅ | ✅ |
+| Manual Backup | ✅ | ✅ | ✅ | ✅ |
+| Dark Theme | ❌ | ✅ | ✅ | ✅ |
+| External Dependencies | ❌ | ❌ | ✅ | ❌ |
+| Button Animations | ❌ | ❌ | ❌ | ✅ |
+| Progress Ring | ❌ | ❌ | ❌ | ✅ |
+| Status Animations | ❌ | ❌ | ❌ | ✅ |
+| Premium Notifications | ❌ | ❌ | ❌ | ✅ |
+| Color Transitions | ❌ | ❌ | ❌ | ✅ |
 
 ## Safety Notes
 

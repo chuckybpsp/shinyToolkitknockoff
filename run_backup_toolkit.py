@@ -42,22 +42,39 @@ def main():
     gui_available = check_gui_support()
     
     if gui_available:
-        print("GUI support detected. Launching GUI version...")
-        # Check if dependencies are installed
+        print("GUI support detected. Launching Premium GUI version...")
+        
+        # Try premium version first
+        try:
+            from backup_toolkit_premium import main as run_premium_toolkit
+            run_premium_toolkit()
+            return
+        except ImportError:
+            print("Premium version not available, trying standard GUI...")
+        
+        # Check if dependencies are installed for standard version
         if not check_dependencies():
             print("Missing dependencies. Installing...")
             if not install_requirements():
-                print("Failed to install dependencies. Please run: pip install -r requirements.txt")
-                sys.exit(1)
+                print("Failed to install dependencies. Trying simple GUI version...")
+                try:
+                    from backup_toolkit_simple import main as run_simple_toolkit
+                    run_simple_toolkit()
+                    return
+                except ImportError as e:
+                    print(f"Error importing simple GUI backup toolkit: {e}")
+                    print("Falling back to CLI version...")
+                    gui_available = False
         
-        # Import and run the GUI backup toolkit
-        try:
-            from backup_toolkit import main as run_gui_toolkit
-            run_gui_toolkit()
-        except ImportError as e:
-            print(f"Error importing GUI backup toolkit: {e}")
-            print("Falling back to CLI version...")
-            gui_available = False
+        # Import and run the standard GUI backup toolkit
+        if gui_available:
+            try:
+                from backup_toolkit import main as run_gui_toolkit
+                run_gui_toolkit()
+            except ImportError as e:
+                print(f"Error importing GUI backup toolkit: {e}")
+                print("Falling back to CLI version...")
+                gui_available = False
     
     if not gui_available:
         print("No GUI support detected. Launching CLI version...")
